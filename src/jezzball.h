@@ -16,7 +16,7 @@
 #define MAP_WIDTH 30
 #define MAP_HEIGHT 24
 
-#define GAME_SPEED 1024
+#define GAME_SPEED 512
 
 #define MAX_BALLS 100
 #define MAX_NAME_LENGTH 12

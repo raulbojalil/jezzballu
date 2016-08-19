@@ -41,16 +41,24 @@ void fillScreen(char r,char g,char b,char a)
 
 void clearScreen()
 {
-	//fillScreen(0, 0, 0, 0);
+	//fillScreen(0, 0, 0, 255);
 	//flipBuffers();
-
-	for (int i = 0; i < 1920; i++)
+	for (int x = 0; x < 1920; x++)
 	{
-		for (int j = 0; j < 1080; j++)
+		for (int y = 0; y < 1080; y++)
 		{
-			drawPixel(i, j, 0, 0, 0, 1);
+			uint32_t num = (0 << 24) | (0 << 16) | (0 << 8) | 255;
+			OSScreenPutPixelEx(0, x * 2, y * 2, num);
+			OSScreenPutPixelEx(1, x * 2, y * 2, num);
+			OSScreenPutPixelEx(0, x * 2 + 1, y * 2, num);
+			OSScreenPutPixelEx(1, x * 2 + 1, y * 2, num);
+			OSScreenPutPixelEx(0, x * 2, y * 2 + 1, num);
+			OSScreenPutPixelEx(1, x * 2, y * 2 + 1, num);
+			OSScreenPutPixelEx(0, x * 2 + 1, y * 2 + 1, num);
+			OSScreenPutPixelEx(1, x * 2 + 1, y * 2 + 1, num);
 		}
 	}
+
 }
 
 void drawInit()

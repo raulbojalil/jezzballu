@@ -61,6 +61,7 @@ Rect blueWallHead = {0,0,8,8};
 u16 onTouchScreenPressedX = 0;
 u16 onTouchScreenPressedY = 0;
 
+u8 cls = 0;
 u8 taps = 0;
 u32 touchTime = 0;
 u32 testTouch = 0;
@@ -117,7 +118,7 @@ void initBackground(){
 }
 void initLevel(u8 level)
 {
-	clearScreen();
+	
 	u8 i, j;
 
     ballCount = level + 1;
@@ -263,12 +264,14 @@ void jezzballUpdate(void)
 		inputHighscore = -1;
 		totalScore = 0;
 		level = 1;
+		cls = 2;
 		initLevel(level);
 	}
     else if (levelComplete && (isKeyPressed(CONTROLS_CONTINUE)))
 	{
 		levelComplete = 0;
 		totalScore += levelScore;
+		cls = 2;
 		initLevel(++level);
     }
 }
@@ -804,6 +807,11 @@ void gameOver()
 
 void jezzballDraw()
 {
+	if (cls > 0)
+	{
+		clearScreen();
+		cls--;
+	}
 	drawBackground();
 	drawBalls();
 	
